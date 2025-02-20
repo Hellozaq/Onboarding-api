@@ -2,6 +2,7 @@ package suai.vladislav.onboardingapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Page extends AbstractEntity {
+public class Page extends BaseEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
@@ -26,7 +27,7 @@ public class Page extends AbstractEntity {
     @Column(nullable = false)
     private Integer orderInModule;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "moduleId")
     private Module module;
 }

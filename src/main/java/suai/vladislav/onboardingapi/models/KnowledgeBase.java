@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KnowledgeBase extends AbstractEntity {
+public class KnowledgeBase extends BaseEntity {
     @Column(nullable = false)
     private String name;
 

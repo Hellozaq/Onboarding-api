@@ -2,6 +2,7 @@ package suai.vladislav.onboardingapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserProgressInModule extends AbstractEntity {
+public class UserProgressInModule extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
@@ -26,11 +27,11 @@ public class UserProgressInModule extends AbstractEntity {
     @Column(nullable = false)
     private Integer pagesCount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "moduleId")
     private Module module;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
 }

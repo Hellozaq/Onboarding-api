@@ -2,6 +2,7 @@ package suai.vladislav.onboardingapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -19,14 +20,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Survey extends AbstractEntity {
+public class Survey extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "SurveyXUser",
         joinColumns = @JoinColumn(name = "surveyId"),

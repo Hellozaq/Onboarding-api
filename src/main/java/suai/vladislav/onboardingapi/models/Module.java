@@ -2,6 +2,7 @@ package suai.vladislav.onboardingapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -19,7 +20,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Module extends AbstractEntity {
+public class Module extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
@@ -35,13 +36,13 @@ public class Module extends AbstractEntity {
     @Column(nullable = false, unique = true)
     private Integer orderInTrack;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trackId")
     private Track track;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     private List<Page> pages;
 
-    @OneToMany(mappedBy = "module")
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
     private List<UserProgressInModule> userProgressInModules;
 }

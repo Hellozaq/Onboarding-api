@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ScoreboardServiceImpl implements ScoreboardService {
+
     private final ScoreboardRepository scoreboardRepository;
 
     @Override
     public List<ScoreboardDto> getScoreboard() {
-
         return scoreboardRepository.findAll().stream()
             .map(scoreboard -> ScoreboardDto.builder()
                 .id(scoreboard.getId())
@@ -24,6 +24,6 @@ public class ScoreboardServiceImpl implements ScoreboardService {
                 .userId(scoreboard.getUser().getId())
                 .build()
             )
-            .collect(Collectors.toList());
+            .toList();
     }
 }

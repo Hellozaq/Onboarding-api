@@ -4,11 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
 @Builder
-public record ScoreboardDto(
+public record TrackDto(
     Long id,
     @NotBlank
-    Integer score,
+    String name,
     @NotBlank
-    Long userId
+    Integer modulesCount
 ) {
 }
