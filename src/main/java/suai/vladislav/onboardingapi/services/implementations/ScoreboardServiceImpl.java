@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ScoreboardServiceImpl implements ScoreboardService {
 
     private final ScoreboardRepository scoreboardRepository;
-
+     // TODO: make on mappers
     @Override
     public List<ScoreboardDto> getScoreboard() {
         return scoreboardRepository.findAll().stream()

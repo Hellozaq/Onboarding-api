@@ -1,14 +1,15 @@
 package suai.vladislav.onboardingapi.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import org.hibernate.validator.constraints.Range;
 
 @Builder
 public record ScoreboardDto(
     Long id,
-    @NotBlank
+    @Range(min = 0)
     Integer score,
-    @NotBlank
+    @NotNull
     Long userId
 ) {
 }

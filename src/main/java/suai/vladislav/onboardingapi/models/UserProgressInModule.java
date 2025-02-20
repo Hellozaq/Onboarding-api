@@ -24,9 +24,6 @@ public class UserProgressInModule extends BaseEntity {
     @Column(nullable = false)
     private Integer lastCompletedPageNumber;
 
-    @Column(nullable = false)
-    private Integer pagesCount;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "moduleId")
     private Module module;

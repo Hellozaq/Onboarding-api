@@ -1,5 +1,6 @@
 package suai.vladislav.onboardingapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,9 +25,6 @@ public class Module extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private Integer pagesCount;
-
     @Column(nullable = false, columnDefinition = "TEXT")
     private String startContent;
 
@@ -36,7 +34,8 @@ public class Module extends BaseEntity {
     @Column(nullable = false, unique = true)
     private Integer orderInTrack;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference(value = "module-track")
     @JoinColumn(name = "trackId")
     private Track track;
 
