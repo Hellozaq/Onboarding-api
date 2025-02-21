@@ -27,7 +27,7 @@ public class Page extends BaseEntity {
     @Column(nullable = false)
     private Integer orderInModule;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "moduleId")
     private Module module;
 }

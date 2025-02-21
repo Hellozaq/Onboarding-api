@@ -20,20 +20,15 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public List<TrackDto> getTracks() {
-        return trackMapper.toTrackDtoList(trackRepository.findAll());
+        return trackRepository.findAll().stream()
+            .map(trackMapper::toDto)
+            .toList();
     }
 
-    // TODO: make on mappers
     @Override
     public TrackDto addTrack(TrackDto trackDto) {
-        Track track = trackRepository.save(Track.builder()
-            .name(trackDto.name())
-            .build()
-        );
+        Track track = trackRepository.save(trackMapper.toModel(trackDto));
 
-        return TrackDto.builder()
-            .id(track.getId())
-            .name(track.getName())
-            .build();
+        return trackMapper.toDto(track);
     }
 }

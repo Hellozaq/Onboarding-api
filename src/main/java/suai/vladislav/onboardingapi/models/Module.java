@@ -29,7 +29,7 @@ public class Module extends BaseEntity {
     private String startContent;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private Integer endContent;
+    private String endContent;
 
     @Column(nullable = false, unique = true)
     private Integer orderInTrack;
@@ -39,7 +39,7 @@ public class Module extends BaseEntity {
     @JoinColumn(name = "trackId")
     private Track track;
 
-    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "module", fetch = FetchType.EAGER)
     private List<Page> pages;
 
     @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)

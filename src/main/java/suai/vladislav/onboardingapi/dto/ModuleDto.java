@@ -7,6 +7,7 @@ public record ModuleDto(
     String startContent,
     String endContent,
     Integer orderInTrack,
-    Long trackId
+    Long trackId,
+    Integer pagesCount
 ) {
 }

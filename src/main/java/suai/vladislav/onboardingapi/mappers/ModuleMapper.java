@@ -11,10 +11,9 @@ import java.util.List;
 @Mapper(config = MapperConfig.class)
 public interface ModuleMapper {
 
+    @Mapping(target = "pagesCount", expression = "java(module.getPages() != null ? module.getPages().size() : 0)")
     @Mapping(target = "trackId", source = "track.id")
     ModuleDto toDto(Module module);
 
     Module toModel(ModuleDto moduleDto);
-
-    List<ModuleDto> toDtoList(List<Module> modules);
 }
