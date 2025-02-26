@@ -8,4 +8,6 @@ public interface TrackService {
     List<TrackDto> getTracks();
 
     TrackDto addTrack(TrackDto trackDto);
+
+    TrackDto getTrackById(Long id);
 }
