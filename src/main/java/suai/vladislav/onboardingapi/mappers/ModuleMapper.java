@@ -6,8 +6,6 @@ import suai.vladislav.onboardingapi.configs.MapperConfig;
 import suai.vladislav.onboardingapi.dto.ModuleDto;
 import suai.vladislav.onboardingapi.models.Module;
 
-import java.util.List;
-
 @Mapper(config = MapperConfig.class)
 public interface ModuleMapper {
 
