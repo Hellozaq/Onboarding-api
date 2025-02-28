@@ -28,9 +28,14 @@ public class TrackServiceImpl implements TrackService {
     public List<TrackDto> getTracks() {
         log.info("вызван getTracks");
 
-        return trackRepository.findAll().stream()
-            .map(trackMapper::toDto)
-            .toList();
+        return trackRepository.findAll().stream().map(trackMapper::toDto).toList();
+    }
+
+    @Override
+    public TrackDto getTrackById(Long id) {
+        log.info("вызван getTrackById id = {}", id);
+
+        return trackMapper.toDto(trackRepository.findById(id).orElseThrow(() -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)));
     }
 
     @Override
@@ -39,17 +44,6 @@ public class TrackServiceImpl implements TrackService {
         log.info("вызван addTrack");
 
         Track track = trackRepository.save(trackMapper.toModel(trackDto));
-
-        return trackMapper.toDto(track);
-    }
-
-    @Override
-    public TrackDto getTrackById(Long id) {
-        log.info("вызван getTrackById id = {}", id);
-
-        Track track = trackRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
-        );
 
         return trackMapper.toDto(track);
     }
@@ -64,7 +58,6 @@ public class TrackServiceImpl implements TrackService {
         );
 
         track.setName(trackDto.name());
-
         trackRepository.save(track);
 
         return trackMapper.toDto(track);

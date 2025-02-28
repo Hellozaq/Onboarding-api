@@ -7,11 +7,11 @@ import java.util.List;
 public interface TrackService {
     List<TrackDto> getTracks();
 
-    TrackDto addTrack(TrackDto trackDto);
-
     TrackDto getTrackById(Long id);
+
+    TrackDto addTrack(TrackDto trackDto);
 
     TrackDto updateTrack(TrackDto trackDto);
 
-    void deleteTrack(Long trackId);
+    void deleteTrack(Long id);
 }
