@@ -31,7 +31,7 @@ public class Module extends BaseModel {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String endContent;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer orderInTrack;
 
     @ManyToOne(fetch = FetchType.EAGER)

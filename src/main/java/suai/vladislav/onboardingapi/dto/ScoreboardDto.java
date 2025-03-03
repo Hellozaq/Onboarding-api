@@ -9,8 +9,10 @@ import org.hibernate.validator.constraints.Range;
 public record ScoreboardDto(
     @Positive
     Long id,
+
     @Positive
     Integer score,
+
     @NotNull
     @Positive
     Long userId

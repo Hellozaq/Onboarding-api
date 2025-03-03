@@ -1,28 +1,25 @@
 package suai.vladislav.onboardingapi.dto;
 
-
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-public record ModuleDto(
+public record PageDto(
     @Positive
     Long id,
 
     @NotBlank
+    String content,
+
+    @NotBlank
     String name,
 
-    @NotBlank
-    String startContent,
-
-    @NotBlank
-    String endContent,
+    @Positive
+    @NotNull
+    Integer orderInModule,
 
     @Positive
-    Integer orderInTrack,
-
-    Long trackId,
-
-    @Positive
-    Integer pagesCount
+    @NotNull
+    Long moduleId
 ) {
 }

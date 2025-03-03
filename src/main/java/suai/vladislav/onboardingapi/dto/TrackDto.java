@@ -10,8 +10,10 @@ import java.util.List;
 public record TrackDto(
     @Positive
     Long id,
+
     @NotBlank
     String name,
+
     List<ModuleDto> modules
 ) {
 }

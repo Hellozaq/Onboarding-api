@@ -58,7 +58,9 @@ public class ModuleServiceImpl implements ModuleService {
         Module module = moduleMapper.toModel(moduleDto);
         module.setTrack(track);
 
-        return moduleMapper.toDto(moduleRepository.save(module));
+        return moduleMapper.toDto(
+            moduleRepository.save(module)
+        );
     }
 
     @Override
@@ -70,14 +72,19 @@ public class ModuleServiceImpl implements ModuleService {
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.id())
         );
 
+        Track track = trackRepository.findById(moduleDto.trackId()).orElseThrow(
+            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.trackId())
+        );
+
         module.setName(moduleDto.name());
         module.setStartContent(moduleDto.startContent());
         module.setEndContent(moduleDto.endContent());
         module.setOrderInTrack(moduleDto.orderInTrack());
+        module.setTrack(track);
 
-        moduleRepository.save(module);
-
-        return moduleMapper.toDto(module);
+        return moduleMapper.toDto(
+            moduleRepository.save(module)
+        );
     }
 
     @Override
