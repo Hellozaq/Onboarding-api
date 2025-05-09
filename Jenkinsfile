@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
@@ -33,12 +33,12 @@ pipeline {
         }
         stage('Flyway Migration') {
             steps {
-                sh 'mvn flyway:migrate -Dflyway.url=${SPRING_DATASOURCE_URL} -Dflyway.user=${SPRING_DATASOURCE_USERNAME} -Dflyway.password=${SPRING_DATASOURCE_PASSWORD}'
+                bat 'mvn flyway:migrate -Dflyway.url=${SPRING_DATASOURCE_URL} -Dflyway.user=${SPRING_DATASOURCE_USERNAME} -Dflyway.password=${SPRING_DATASOURCE_PASSWORD}'
             }
         }
         stage('Package') {
             steps {
-                sh 'mvn package -DskipTests'
+                bat 'mvn package -DskipTests'
             }
             post {
                 success {
