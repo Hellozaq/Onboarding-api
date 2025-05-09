@@ -39,7 +39,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public ModuleDto getModuleById(Long id) {
-        log.info("вызван getModuleById");
+        log.info("вызван getModuleById, id = {}", id);
 
         return moduleMapper.toDto(moduleRepository.findById(id).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
