@@ -39,7 +39,7 @@ public class PageServiceImpl implements PageService {
 
     @Override
     public PageDto getPageById(Long id) {
-        log.info("вызван getPageById id = {}", id);
+        log.info("вызван getPageById, id = {}", id);
 
         return pageMapper.toDto(pageRepository.findById(id).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
