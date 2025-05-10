@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Flyway Migration') {
             steps {
-                bat 'mvn flyway:migrate -Dflyway.url=${SPRING_DATASOURCE_URL} -Dflyway.user=${SPRING_DATASOURCE_USERNAME} -Dflyway.password=${SPRING_DATASOURCE_PASSWORD}'
+                bat 'mvn flyway:migrate -Dflyway.url="%SPRING_DATASOURCE_URL%" -Dflyway.user="%SPRING_DATASOURCE_USERNAME%" -Dflyway.password="%SPRING_DATASOURCE_PASSWORD%"'
             }
         }
         stage('Package') {
