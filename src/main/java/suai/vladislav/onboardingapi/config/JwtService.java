@@ -18,7 +18,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv.configure().directory("./").ignoreIfMalformed().ignoreIfMissing().load();
 
     private static final String SECRET_KEY = dotenv.get("SECRET_KEY");
 
