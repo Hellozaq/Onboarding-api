@@ -70,6 +70,8 @@ public class TrackServiceImpl implements TrackService {
     @Override
     @Transactional
     public void deleteTrack(Long id) {
+        log.info("вызван deleteTrack");
+
         Track track = trackRepository.findById(id).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
         );
