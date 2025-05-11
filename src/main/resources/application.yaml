@@ -2,9 +2,9 @@ spring:
   application:
     name: Onboarding-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://ep-muddy-mountain-a49jffvc-pooler.us-east-1.aws.neon.tech:5432/onboarding-api?sslmode=require
+    username: ${DB_USERNAME:neondb_owner}
+    password: ${DB_PASSWORD:npg_OQ4NUEJr5bxu}
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: true

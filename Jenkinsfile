@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         POSTGRES_CREDENTIALS = credentials('postgres-credentials')
-        SPRING_DATASOURCE_URL = 'jdbc:postgresql://localhost:5432/postgres'
+        SPRING_DATASOURCE_URL = 'jdbc:postgresql://ep-muddy-mountain-a49jffvc-pooler.us-east-1.aws.neon.tech:5432/onboarding-api?sslmode=require'
         SPRING_DATASOURCE_USERNAME = "${POSTGRES_CREDENTIALS_USR}"
         SPRING_DATASOURCE_PASSWORD = "${POSTGRES_CREDENTIALS_PSW}"
     }

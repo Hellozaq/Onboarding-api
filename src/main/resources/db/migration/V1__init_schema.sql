@@ -7,7 +7,7 @@ create table user_friend
 );
 
 alter table user_friend
-    owner to postgres;
+    owner to neondb_owner;
 
 create table _user
 (
@@ -25,7 +25,7 @@ create table _user
     );
 
 alter table _user
-    owner to postgres;
+    owner to neondb_owner;
 
 create table achievement
 (
@@ -39,7 +39,7 @@ create table achievement
 );
 
 alter table achievement
-    owner to postgres;
+    owner to neondb_owner;
 
 create table achievementxuser
 (
@@ -52,7 +52,7 @@ create table achievementxuser
 );
 
 alter table achievementxuser
-    owner to postgres;
+    owner to neondb_owner;
 
 create table knowledgebase
 (
@@ -65,7 +65,7 @@ create table knowledgebase
 );
 
 alter table knowledgebase
-    owner to postgres;
+    owner to neondb_owner;
 
 create table scoreboard
 (
@@ -80,7 +80,7 @@ create table scoreboard
 );
 
 alter table scoreboard
-    owner to postgres;
+    owner to neondb_owner;
 
 create table survey
 (
@@ -93,7 +93,7 @@ create table survey
 );
 
 alter table survey
-    owner to postgres;
+    owner to neondb_owner;
 
 create table surveyxuser
 (
@@ -106,7 +106,7 @@ create table surveyxuser
 );
 
 alter table surveyxuser
-    owner to postgres;
+    owner to neondb_owner;
 
 create table track
 (
@@ -118,7 +118,7 @@ create table track
 );
 
 alter table track
-    owner to postgres;
+    owner to neondb_owner;
 
 create table module
 (
@@ -136,7 +136,7 @@ create table module
 );
 
 alter table module
-    owner to postgres;
+    owner to neondb_owner;
 
 create table page
 (
@@ -153,7 +153,7 @@ create table page
 );
 
 alter table page
-    owner to postgres;
+    owner to neondb_owner;
 
 create table user_progress_in_module
 (
@@ -172,5 +172,5 @@ create table user_progress_in_module
 );
 
 alter table user_progress_in_module
-    owner to postgres;
+    owner to neondb_owner;
 
