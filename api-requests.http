@@ -1,0 +1,57 @@
+### REGISTER
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "firstname": "test",
+  "lastname": "test",
+  "email": "test@mail.ru",
+  "password": "111111"
+}
+
+### AUTHENTICATE
+POST http://localhost:8080/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+  "email": "test@mail.ru",
+  "password": "111111"
+}
+
+### ----- AUTH TOKEN -----
+
+@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDY5NzE2OTgsImV4cCI6MTc0Njk3MzEzOH0.d9-S0Z4bi6-Fa9EDuurKIej-QT7AKSjPkybuoCof10k
+
+### GET ALL SCOREBOARDS
+
+GET http://localhost:8080/api/v1/scoreboard
+Authorization: {{authToken}}
+
+### GET SCOREBOARD BY ID
+GET http://localhost:8080/api/v1/scoreboard/2
+Authorization: {{authToken}}
+
+### ADD SCOREBOARD
+POST http://localhost:8080/api/v1/scoreboard
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "score": 22212,
+  "userId": 2
+}
+
+### UPDATE SCOREBOARD
+PUT http://localhost:8080/api/v1/scoreboard
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "id": 2,
+  "userId": 3,
+  "score": 99999
+}
+
+### DELETE SCOREBOARD
+DELETE http://localhost:8080/api/v1/scoreboard/4
+Authorization: {{authToken}}
