@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
         stage('SAST Analysis (SonarQube)') {
@@ -26,12 +26,12 @@ pipeline {
                 SONAR_TOKEN = credentials('sonar-token')
             }
             steps {
-                bat 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://localhost:9000 -Dsonar.login=%SONAR_TOKEN%'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://130.193.38.251:9000 -Dsonar.login=$SONAR_TOKEN'
             }
         }
         stage('Dependency Check') {
             steps {
-                bat 'mvn org.owasp:dependency-check-maven:check'
+                sh 'mvn org.owasp:dependency-check-maven:check'
             }
             post {
                 always {
@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -51,12 +51,12 @@ pipeline {
         }
         stage('Flyway Migration') {
             steps {
-                bat 'mvn flyway:migrate -Dflyway.url="%SPRING_DATASOURCE_URL%" -Dflyway.user="%SPRING_DATASOURCE_USERNAME%" -Dflyway.password="%SPRING_DATASOURCE_PASSWORD%"'
+                sh 'mvn flyway:migrate -Dflyway.url="$SPRING_DATASOURCE_URL" -Dflyway.user="$SPRING_DATASOURCE_USERNAME" -Dflyway.password="$SPRING_DATASOURCE_PASSWORD"'
             }
         }
         stage('Package') {
             steps {
-                bat 'mvn package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
             post {
                 success {
