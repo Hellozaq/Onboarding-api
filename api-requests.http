@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ### ----- AUTH TOKEN -----
 
-@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDY5NzE2OTgsImV4cCI6MTc0Njk3MzEzOH0.d9-S0Z4bi6-Fa9EDuurKIej-QT7AKSjPkybuoCof10k
+@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDY5OTA5MDAsImV4cCI6MTc0Njk5MjM0MH0.tVTV2ozo2E571LWz3DbRd4xXZTwJiDnP6UAu6NZlQ54
 
 ### GET ALL SCOREBOARDS
 
@@ -52,6 +52,41 @@ Authorization: {{authToken}}
   "score": 99999
 }
 
-### DELETE SCOREBOARD
+### DELETE SCOREBOARD BY ID
 DELETE http://localhost:8080/api/v1/scoreboard/4
+Authorization: {{authToken}}
+
+
+### GET KNOWLEDGEBASES
+GET http://localhost:8080/api/v1/knowledgebase
+Authorization: {{authToken}}
+
+### GET KNOWLEDGEBASE BY ID
+GET http://localhost:8080/api/v1/knowledgebase/1
+Authorization: {{authToken}}
+
+### ADD KNOWLEDGEBASE
+POST http://localhost:8080/api/v1/knowledgebase
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "name": "testKnowledgeBase",
+  "content": "some html content"
+}
+
+### UPDATE KNOWLEDGEBASE
+PUT http://localhost:8080/api/v1/knowledgebase
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "id": 1,
+  "name": "testKnowledgeBase Updated",
+  "content": "some html content Updated"
+}
+
+### DELETE KNOWLEDGEBASE BY ID
+DELETE http://localhost:8080/api/v1/knowledgebase/1
+Content-Type: application/json
 Authorization: {{authToken}}
