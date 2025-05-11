@@ -29,10 +29,14 @@ pipeline {
                 bat 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://localhost:9000 -Dsonar.login=%SONAR_TOKEN%'
             }
         }
-        stage('OSS Scan (Dependency Check)') {
+        stage('Dependency Check') {
             steps {
-                bat 'mvn org.owasp:dependency-check-maven:check'
-                archiveArtifacts artifacts: 'dependency-check-report.html', fingerprint: true
+                sh 'mvn org.owasp:dependency-check-maven:check'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'target/dependency-check-report.*', fingerprint: true
+                }
             }
         }
         stage('Test') {
