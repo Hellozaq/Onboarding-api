@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/webjars/**",
                                 "/swagger-ui.html",
+                                "/actuator/**",
                                 "/api/v1/auth/**"
                         ).permitAll() // Разрешаем доступ без аутентификации
                         .anyRequest().authenticated() // Остальные запросы требуют аутентификации
