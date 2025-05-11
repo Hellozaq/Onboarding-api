@@ -9,7 +9,6 @@ import suai.vladislav.onboardingapi.enums.ErrorType;
 import suai.vladislav.onboardingapi.exception.CommonOnboardingApiException;
 import suai.vladislav.onboardingapi.mapper.ScoreboardMapper;
 import suai.vladislav.onboardingapi.model.Scoreboard;
-import suai.vladislav.onboardingapi.model.Track;
 import suai.vladislav.onboardingapi.model.User;
 import suai.vladislav.onboardingapi.repository.ScoreboardRepository;
 import suai.vladislav.onboardingapi.repository.UserRepository;
