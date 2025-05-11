@@ -21,6 +21,20 @@ pipeline {
                 bat 'mvn clean compile'
             }
         }
+        stage('SAST Analysis (SonarQube)') {
+            environment {
+                SONAR_TOKEN = credentials('sonar-token')
+            }
+            steps {
+                bat 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://localhost:9000 -Dsonar.login=%SONAR_TOKEN%'
+            }
+        }
+        stage('OSS Scan (Dependency Check)') {
+            steps {
+                bat 'mvn org.owasp:dependency-check-maven:check'
+                archiveArtifacts artifacts: 'dependency-check-report.html', fingerprint: true
+            }
+        }
         stage('Test') {
             steps {
                 bat 'mvn test'
