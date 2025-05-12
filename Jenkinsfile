@@ -40,7 +40,7 @@ pipeline {
                 SONAR_TOKEN = credentials('sonar-token')
             }
             steps {
-                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://130.193.38.251:9000 -Dsonar.login=$SONAR_TOKEN'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://158.160.38.125:9000 -Dsonar.login=$SONAR_TOKEN'
             }
         }
         stage('Dependency Check') {
