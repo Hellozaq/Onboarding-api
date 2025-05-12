@@ -35,14 +35,14 @@ pipeline {
                 }
             }
         }
-//         stage('SAST Analysis (SonarQube)') {
-//             environment {
-//                 SONAR_TOKEN = credentials('sonar-token')
-//             }
-//             steps {
-//                 sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://130.193.38.251:9000 -Dsonar.login=$SONAR_TOKEN'
-//             }
-//         }
+        stage('SAST Analysis (SonarQube)') {
+            environment {
+                SONAR_TOKEN = credentials('sonar-token')
+            }
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://130.193.38.251:9000 -Dsonar.login=$SONAR_TOKEN'
+            }
+        }
         stage('Dependency Check') {
             steps {
                 sh 'mvn org.owasp:dependency-check-maven:check'
