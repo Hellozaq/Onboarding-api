@@ -57,6 +57,10 @@ public class TrackServiceImpl implements TrackService {
     public TrackDto updateTrack(TrackDto trackDto) {
         log.info("вызван updateTrack");
 
+        if (trackDto.id() == null) {
+            throw new CommonOnboardingApiException(ErrorType.ID_IS_MISSING);
+        }
+
         Track track = trackRepository.findById(trackDto.id()).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, trackDto.id())
         );

@@ -10,7 +10,8 @@ public enum ErrorType {
 
     NOT_FOUND("Сущность не найдена, id=%s", HttpStatus.NOT_FOUND),
     ALREADY_EXISTS("Сущность уже существует, id=%s", HttpStatus.CONFLICT),
-    WRONG_CREDENTIALS("Неверный логин или пароль", HttpStatus.UNAUTHORIZED);
+    WRONG_CREDENTIALS("Неверный логин или пароль", HttpStatus.UNAUTHORIZED),
+    ID_IS_MISSING("Не передан id сущности", HttpStatus.BAD_REQUEST);
 
     private final String message;
     private final HttpStatus status;

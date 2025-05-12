@@ -9,6 +9,7 @@ Content-Type: application/json
   "password": "111111"
 }
 
+
 ### AUTHENTICATE
 POST http://localhost:8080/api/v1/auth/authenticate
 Content-Type: application/json
@@ -20,16 +21,19 @@ Content-Type: application/json
 
 ### ----- AUTH TOKEN -----
 
-@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDY5OTA5MDAsImV4cCI6MTc0Njk5MjM0MH0.tVTV2ozo2E571LWz3DbRd4xXZTwJiDnP6UAu6NZlQ54
+@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDcwNTM4MjIsImV4cCI6MTc0NzA1NTI2Mn0.rRXM-wbLUyf2W01Aa7myNcCiW5a9MeeuaakciL4ZTSs
 
 ### GET ALL SCOREBOARDS
+
 
 GET http://localhost:8080/api/v1/scoreboard
 Authorization: {{authToken}}
 
+
 ### GET SCOREBOARD BY ID
 GET http://localhost:8080/api/v1/scoreboard/2
 Authorization: {{authToken}}
+
 
 ### ADD SCOREBOARD
 POST http://localhost:8080/api/v1/scoreboard
@@ -40,6 +44,7 @@ Authorization: {{authToken}}
   "score": 22212,
   "userId": 2
 }
+
 
 ### UPDATE SCOREBOARD
 PUT http://localhost:8080/api/v1/scoreboard
@@ -52,6 +57,7 @@ Authorization: {{authToken}}
   "score": 99999
 }
 
+
 ### DELETE SCOREBOARD BY ID
 DELETE http://localhost:8080/api/v1/scoreboard/4
 Authorization: {{authToken}}
@@ -61,9 +67,11 @@ Authorization: {{authToken}}
 GET http://localhost:8080/api/v1/knowledgebase
 Authorization: {{authToken}}
 
+
 ### GET KNOWLEDGEBASE BY ID
 GET http://localhost:8080/api/v1/knowledgebase/1
 Authorization: {{authToken}}
+
 
 ### ADD KNOWLEDGEBASE
 POST http://localhost:8080/api/v1/knowledgebase
@@ -74,6 +82,7 @@ Authorization: {{authToken}}
   "name": "testKnowledgeBase",
   "content": "some html content"
 }
+
 
 ### UPDATE KNOWLEDGEBASE
 PUT http://localhost:8080/api/v1/knowledgebase
@@ -86,7 +95,47 @@ Authorization: {{authToken}}
   "content": "some html content Updated"
 }
 
+
 ### DELETE KNOWLEDGEBASE BY ID
 DELETE http://localhost:8080/api/v1/knowledgebase/1
+Content-Type: application/json
+Authorization: {{authToken}}
+
+
+### GET ALL SURVEYS
+GET http://localhost:8080/api/v1/survey
+Authorization: {{authToken}}
+
+
+### GET SURVEY BY ID
+GET http://localhost:8080/api/v1/survey/1
+Authorization: {{authToken}}
+
+
+### ADD SURVEY
+POST http://localhost:8080/api/v1/survey
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "name": "top Survey",
+  "content": "top survey content"
+}
+
+
+### UPDATE SURVEY
+PUT http://localhost:8080/api/v1/survey
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "id" : 5,
+  "name": "top Survey updated",
+  "content": "top survey content updated"
+}
+
+
+### DELETE SURVEY
+DELETE http://localhost:8080/api/v1/survey/5
 Content-Type: application/json
 Authorization: {{authToken}}

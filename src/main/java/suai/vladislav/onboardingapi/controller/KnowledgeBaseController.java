@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import suai.vladislav.onboardingapi.dto.KnowledgeBaseDto;
-import suai.vladislav.onboardingapi.dto.TrackDto;
 import suai.vladislav.onboardingapi.service.interfaces.KnowledgeBaseService;
-import suai.vladislav.onboardingapi.service.interfaces.TrackService;
 
 import java.util.List;
 
@@ -32,24 +30,35 @@ public class KnowledgeBaseController {
     }
 
     @GetMapping("/{knowledgeBaseId}")
-    public KnowledgeBaseDto getKnowledgeBase(@PathVariable("knowledgeBaseId") Long knowledgeBaseId) {
+    public KnowledgeBaseDto getKnowledgeBase(
+        @PathVariable("knowledgeBaseId") Long knowledgeBaseId
+    ) {
         return knowledgeBaseService.getKnowledgeBaseById(knowledgeBaseId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public KnowledgeBaseDto addKnowledgeBase(@Validated @RequestBody KnowledgeBaseDto knowledgeBaseDto) {
+    public KnowledgeBaseDto addKnowledgeBase(
+        @Validated
+        @RequestBody KnowledgeBaseDto knowledgeBaseDto
+    ) {
         return knowledgeBaseService.addKnowledgeBase(knowledgeBaseDto);
     }
 
     @PutMapping
-    public KnowledgeBaseDto updateKnowledgeBase(@Validated @RequestBody KnowledgeBaseDto knowledgeBaseDto) {
+    public KnowledgeBaseDto updateKnowledgeBase(
+        @Validated
+        @RequestBody KnowledgeBaseDto knowledgeBaseDto
+    ) {
         return knowledgeBaseService.updateKnowledgeBase(knowledgeBaseDto);
     }
 
     @DeleteMapping("/{knowledgeBaseId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteKnowledgeBase(@Validated @PathVariable("knowledgeBaseId") Long knowledgeBaseId) {
+    public void deleteKnowledgeBase(
+        @Validated
+        @PathVariable("knowledgeBaseId") Long knowledgeBaseId
+    ) {
         knowledgeBaseService.deleteKnowledgeBase(knowledgeBaseId);
     }
 }

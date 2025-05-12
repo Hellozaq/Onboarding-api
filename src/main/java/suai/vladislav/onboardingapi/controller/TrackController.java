@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/tracks")
+@RequestMapping("api/v1/track")
 public class TrackController {
 
     private final TrackService trackService;
@@ -30,24 +30,35 @@ public class TrackController {
     }
 
     @GetMapping("/{trackId}")
-    public TrackDto getTrack(@PathVariable("trackId") Long trackId) {
+    public TrackDto getTrack(
+        @PathVariable("trackId") Long trackId
+    ) {
         return trackService.getTrackById(trackId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TrackDto addTrack(@Validated @RequestBody TrackDto trackDto) {
+    public TrackDto addTrack(
+        @Validated
+        @RequestBody TrackDto trackDto
+    ) {
         return trackService.addTrack(trackDto);
     }
 
     @PutMapping
-    public TrackDto updateTrack(@Validated @RequestBody TrackDto trackDto) {
+    public TrackDto updateTrack(
+        @Validated
+        @RequestBody TrackDto trackDto
+    ) {
         return trackService.updateTrack(trackDto);
     }
 
     @DeleteMapping("/{trackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTrack(@Validated @PathVariable("trackId") Long trackId) {
+    public void deleteTrack(
+        @Validated
+        @PathVariable("trackId") Long trackId
+    ) {
         trackService.deleteTrack(trackId);
     }
 }

@@ -69,6 +69,10 @@ public class ScoreboardServiceImpl implements ScoreboardService {
     public ScoreboardDto updateScoreboard(ScoreboardDto scoreboardDto) {
         log.info("вызван updateScoreboard");
 
+        if (scoreboardDto.id() == null) {
+            throw new CommonOnboardingApiException(ErrorType.ID_IS_MISSING);
+        }
+
         Scoreboard scoreboard = scoreboardRepository.findById(scoreboardDto.id()).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, scoreboardDto.id())
         );

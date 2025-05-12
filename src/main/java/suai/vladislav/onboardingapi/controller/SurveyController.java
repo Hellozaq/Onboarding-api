@@ -12,53 +12,53 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import suai.vladislav.onboardingapi.dto.ModuleDto;
-import suai.vladislav.onboardingapi.service.interfaces.ModuleService;
+import suai.vladislav.onboardingapi.dto.SurveyDto;
+import suai.vladislav.onboardingapi.service.interfaces.SurveyService;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/module")
-public class ModuleController {
+@RequestMapping("api/v1/survey")
+public class SurveyController {
 
-    private final ModuleService moduleService;
+    private final SurveyService surveyService;
 
     @GetMapping
-    public List<ModuleDto> getModules() {
-        return moduleService.getModules();
+    public List<SurveyDto> getSurveys() {
+        return surveyService.getSurveys();
     }
 
-    @GetMapping("/{moduleId}")
-    public ModuleDto getModule(
-        @PathVariable("moduleId") Long moduleId
+    @GetMapping("/{surveyId}")
+    public SurveyDto getSurvey(
+        @PathVariable("surveyId") Long surveyId
     ) {
-        return moduleService.getModuleById(moduleId);
+        return surveyService.getSurveyById(surveyId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ModuleDto addModule(
+    public SurveyDto addSurvey(
         @Validated
-        @RequestBody ModuleDto moduleDto
+        @RequestBody SurveyDto surveyDto
     ) {
-        return moduleService.addModule(moduleDto);
+        return surveyService.addSurvey(surveyDto);
     }
 
     @PutMapping
-    public ModuleDto updateModule(
+    public SurveyDto updateSurvey(
         @Validated
-        @RequestBody ModuleDto moduleDto
+        @RequestBody SurveyDto surveyDto
     ) {
-        return moduleService.updateModule(moduleDto);
+        return surveyService.updateSurvey(surveyDto);
     }
 
-    @DeleteMapping("/{moduleId}")
+    @DeleteMapping("/{surveyId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteModule(
+    public void deleteSurvey(
         @Validated
-        @PathVariable("moduleId") Long moduleId
+        @PathVariable("surveyId") Long surveyId
     ) {
-        moduleService.deleteModule(moduleId);
+        surveyService.deleteSurvey(surveyId);
     }
 }
