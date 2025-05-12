@@ -68,6 +68,10 @@ public class ModuleServiceImpl implements ModuleService {
     public ModuleDto updateModule(ModuleDto moduleDto) {
         log.info("вызван updateModule");
 
+        if (moduleDto.id() == null) {
+            throw new CommonOnboardingApiException(ErrorType.ID_IS_MISSING);
+        }
+
         Module module = moduleRepository.findById(moduleDto.id()).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.id())
         );

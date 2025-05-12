@@ -30,7 +30,9 @@ public class ScoreboardController {
     }
 
     @GetMapping("/{scoreboardId}")
-    public ScoreboardDto getScoreboard(@PathVariable("scoreboardId") Long scoreboardId) {
+    public ScoreboardDto getScoreboard(
+        @PathVariable("scoreboardId") Long scoreboardId
+    ) {
         return scoreboardService.getScoreboardById(scoreboardId);
     }
 

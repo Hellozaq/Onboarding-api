@@ -69,6 +69,10 @@ public class PageServiceImpl implements PageService {
     public PageDto updatePage(PageDto pageDto) {
         log.info("вызван updatePage");
 
+        if (pageDto.id() == null) {
+            throw new CommonOnboardingApiException(ErrorType.ID_IS_MISSING);
+        }
+
         Page page = pageRepository.findById(pageDto.id()).orElseThrow(
             () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, pageDto.id())
         );

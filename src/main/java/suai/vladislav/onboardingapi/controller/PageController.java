@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/pages")
+@RequestMapping("api/v1/page")
 public class PageController {
 
     private final PageService pageService;
@@ -30,24 +30,35 @@ public class PageController {
     }
 
     @GetMapping("/{pageId}")
-    public PageDto getPage(@PathVariable("pageId") Long pageId) {
+    public PageDto getPage(
+        @PathVariable("pageId") Long pageId
+    ) {
         return pageService.getPageById(pageId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PageDto addPage(@Validated @RequestBody PageDto pageDto) {
+    public PageDto addPage(
+        @Validated
+        @RequestBody PageDto pageDto
+    ) {
         return pageService.addPage(pageDto);
     }
 
     @PutMapping
-    public PageDto updatePage(@Validated @RequestBody PageDto pageDto) {
+    public PageDto updatePage(
+        @Validated
+        @RequestBody PageDto pageDto
+    ) {
         return pageService.updatePage(pageDto);
     }
 
     @DeleteMapping("/{pageId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePage(@Validated @PathVariable("pageId") Long pageId) {
+    public void deletePage(
+        @Validated
+        @PathVariable("pageId") Long pageId
+    ) {
         pageService.deletePage(pageId);
     }
 }
