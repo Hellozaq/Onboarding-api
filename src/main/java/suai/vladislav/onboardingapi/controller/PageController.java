@@ -56,7 +56,6 @@ public class PageController {
     @DeleteMapping("/{pageId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePage(
-        @Validated
         @PathVariable("pageId") Long pageId
     ) {
         pageService.deletePage(pageId);

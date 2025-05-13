@@ -56,7 +56,6 @@ public class ModuleController {
     @DeleteMapping("/{moduleId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteModule(
-        @Validated
         @PathVariable("moduleId") Long moduleId
     ) {
         moduleService.deleteModule(moduleId);

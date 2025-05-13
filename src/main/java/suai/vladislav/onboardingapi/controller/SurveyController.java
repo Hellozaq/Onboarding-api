@@ -56,7 +56,6 @@ public class SurveyController {
     @DeleteMapping("/{surveyId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSurvey(
-        @Validated
         @PathVariable("surveyId") Long surveyId
     ) {
         surveyService.deleteSurvey(surveyId);

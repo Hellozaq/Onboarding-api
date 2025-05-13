@@ -38,18 +38,26 @@ public class ScoreboardController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ScoreboardDto addScoreboard(@Validated @RequestBody ScoreboardDto scoreboardDto) {
+    public ScoreboardDto addScoreboard(
+        @Validated
+        @RequestBody ScoreboardDto scoreboardDto
+    ) {
         return scoreboardService.addScoreboard(scoreboardDto);
     }
 
     @PutMapping
-    public ScoreboardDto updateScoreboard(@Validated @RequestBody ScoreboardDto scoreboardDto) {
+    public ScoreboardDto updateScoreboard(
+        @Validated
+        @RequestBody ScoreboardDto scoreboardDto
+    ) {
         return scoreboardService.updateScoreboard(scoreboardDto);
     }
 
     @DeleteMapping("/{scoreboardId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteScoreboard(@Validated @PathVariable("scoreboardId") Long scoreboardId) {
+    public void deleteScoreboard(
+        @PathVariable("scoreboardId") Long scoreboardId
+    ) {
         scoreboardService.deleteScoreboard(scoreboardId);
     }
 }

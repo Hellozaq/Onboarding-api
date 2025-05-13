@@ -56,7 +56,6 @@ public class KnowledgeBaseController {
     @DeleteMapping("/{knowledgeBaseId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteKnowledgeBase(
-        @Validated
         @PathVariable("knowledgeBaseId") Long knowledgeBaseId
     ) {
         knowledgeBaseService.deleteKnowledgeBase(knowledgeBaseId);

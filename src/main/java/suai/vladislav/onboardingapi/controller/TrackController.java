@@ -56,7 +56,6 @@ public class TrackController {
     @DeleteMapping("/{trackId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTrack(
-        @Validated
         @PathVariable("trackId") Long trackId
     ) {
         trackService.deleteTrack(trackId);
