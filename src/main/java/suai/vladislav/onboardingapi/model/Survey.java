@@ -12,7 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Survey")
@@ -33,5 +34,13 @@ public class Survey extends BaseModel {
         joinColumns = @JoinColumn(name = "surveyId"),
         inverseJoinColumns = @JoinColumn(name = "userId")
     )
-    private List<User> users;
+    private Set<User> users;
+
+    public void assignUser(User user) {
+        this.users.add(user);
+    }
+
+    public void removeUser(User user) {
+        this.users.remove(user);
+    }
 }
