@@ -9,6 +9,9 @@ pipeline {
         SPRING_DATASOURCE_URL = 'jdbc:postgresql://ep-muddy-mountain-a49jffvc-pooler.us-east-1.aws.neon.tech:5432/onboarding-api?sslmode=require'
         SPRING_DATASOURCE_USERNAME = "${POSTGRES_CREDENTIALS_USR}"
         SPRING_DATASOURCE_PASSWORD = "${POSTGRES_CREDENTIALS_PSW}"
+        NEXUS_CREDENTIALS = credentials('nexus-credentials')
+        NEXUS_USERNAME = "${NEXUS_CREDENTIALS_USR}"
+        NEXUS_PASSWORD = "${NEXUS_CREDENTIALS_PSW}"
     }
     stages {
         stage('Checkout') {
@@ -21,12 +24,23 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'target/site/jacoco/jacoco.xml', fingerprint: true
+                }
+            }
+        }
         stage('SAST Analysis (SonarQube)') {
             environment {
                 SONAR_TOKEN = credentials('sonar-token')
             }
             steps {
-                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://130.193.38.251:9000 -Dsonar.login=$SONAR_TOKEN'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://158.160.38.125:9000 -Dsonar.login=$SONAR_TOKEN'
             }
         }
         stage('Dependency Check') {
@@ -36,16 +50,6 @@ pipeline {
             post {
                 always {
                     archiveArtifacts artifacts: 'target/dependency-check-report.*', fingerprint: true
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
                 }
             }
         }
@@ -61,6 +65,20 @@ pipeline {
             post {
                 success {
                     archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                }
+            }
+        }
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    def pom = readMavenPom file: 'pom.xml'
+                    def version = pom.version
+                    if (version.contains('-SNAPSHOT')) {
+                        echo "Deploying SNAPSHOT version ${version} to maven-snapshots"
+                    } else {
+                        echo "Deploying RELEASE version ${version} to maven-releases"
+                    }
+                    sh 'mvn deploy -DskipTests'
                 }
             }
         }
