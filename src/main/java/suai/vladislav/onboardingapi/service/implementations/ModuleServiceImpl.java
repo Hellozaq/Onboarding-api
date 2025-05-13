@@ -42,7 +42,7 @@ public class ModuleServiceImpl implements ModuleService {
         log.info("вызван getModuleById, id = {}", id);
 
         return moduleMapper.toDto(moduleRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.MODULE_NOT_FOUND, id))
         );
     }
 
@@ -52,7 +52,7 @@ public class ModuleServiceImpl implements ModuleService {
         log.info("вызван addModule");
 
         Track track = trackRepository.findById(moduleDto.trackId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.trackId())
+            () -> new CommonOnboardingApiException(ErrorType.TRACK_NOT_FOUND, moduleDto.trackId())
         );
 
         Module module = moduleMapper.toModel(moduleDto);
@@ -73,11 +73,11 @@ public class ModuleServiceImpl implements ModuleService {
         }
 
         Module module = moduleRepository.findById(moduleDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.MODULE_NOT_FOUND, moduleDto.id())
         );
 
         Track track = trackRepository.findById(moduleDto.trackId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, moduleDto.trackId())
+            () -> new CommonOnboardingApiException(ErrorType.TRACK_NOT_FOUND, moduleDto.trackId())
         );
 
         module.setName(moduleDto.name());
@@ -95,7 +95,7 @@ public class ModuleServiceImpl implements ModuleService {
     @Transactional
     public void deleteModule(Long id) {
         Module module = moduleRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.MODULE_NOT_FOUND, id)
         );
 
         moduleRepository.delete(module);

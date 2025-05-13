@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ### ----- AUTH TOKEN -----
 
-@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDcwNTM4MjIsImV4cCI6MTc0NzA1NTI2Mn0.rRXM-wbLUyf2W01Aa7myNcCiW5a9MeeuaakciL4ZTSs
+@authToken = Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG1haWwucnUiLCJpYXQiOjE3NDcxNDY3MzQsImV4cCI6MTc0NzE0ODE3NH0.molZdpaldREBEzSGyVtTVsD0Bqe0CZGCqfTW9lmA6T4
 
 ### GET ALL SCOREBOARDS
 
@@ -108,7 +108,7 @@ Authorization: {{authToken}}
 
 
 ### GET SURVEY BY ID
-GET http://localhost:8080/api/v1/survey/1
+GET http://localhost:8080/api/v1/survey/2
 Authorization: {{authToken}}
 
 
@@ -138,4 +138,19 @@ Authorization: {{authToken}}
 ### DELETE SURVEY
 DELETE http://localhost:8080/api/v1/survey/5
 Content-Type: application/json
+Authorization: {{authToken}}
+
+
+### GET ALL USERS FOR SURVEY BY ID
+GET http://localhost:8080/api/v1/surveys/2/users
+Authorization: {{authToken}}
+
+
+### ADD USER TO SURVEY
+POST http://localhost:8080/api/v1/surveys/2/users/1
+Authorization: {{authToken}}
+
+
+### DELETE USER FROM SURVEY
+DELETE http://localhost:8080/api/v1/surveys/2/users/1
 Authorization: {{authToken}}

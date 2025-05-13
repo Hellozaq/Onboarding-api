@@ -31,7 +31,7 @@ public class SurveyXUsersServiceImpl implements SurveyXUserService {
         log.info("вызван getUsersForSurvey");
 
         Survey survey = surveyRepository.findById(surveyId).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, surveyId)
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, surveyId)
         );
 
         return survey.getUsers()
@@ -56,11 +56,11 @@ public class SurveyXUsersServiceImpl implements SurveyXUserService {
         log.info("вызван addUserToSurvey");
 
         Survey survey = surveyRepository.findById(surveyId).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, surveyId)
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, surveyId)
         );
 
         User user = userRepository.findById(userId).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, userId)
+            () -> new CommonOnboardingApiException(ErrorType.USER_NOT_FOUND, userId)
         );
 
         survey.assignUser(user);
@@ -79,11 +79,11 @@ public class SurveyXUsersServiceImpl implements SurveyXUserService {
         log.info("вызван deleteUserFromSurvey");
 
         Survey survey = surveyRepository.findById(surveyId).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, surveyId)
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, surveyId)
         );
 
         User user = userRepository.findById(userId).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, userId)
+            () -> new CommonOnboardingApiException(ErrorType.USER_NOT_FOUND, userId)
         );
 
         survey.removeUser(user);

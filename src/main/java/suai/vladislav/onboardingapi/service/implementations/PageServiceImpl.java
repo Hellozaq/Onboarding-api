@@ -42,7 +42,7 @@ public class PageServiceImpl implements PageService {
         log.info("вызван getPageById, id = {}", id);
 
         return pageMapper.toDto(pageRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.PAGE_NOT_FOUND, id))
         );
     }
 
@@ -52,7 +52,7 @@ public class PageServiceImpl implements PageService {
         log.info("вызван addPage");
 
         Module module = moduleRepository.findById(pageDto.moduleId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, pageDto.moduleId())
+            () -> new CommonOnboardingApiException(ErrorType.MODULE_NOT_FOUND, pageDto.moduleId())
         );
 
         Page page = pageMapper.toModel(pageDto);
@@ -74,11 +74,11 @@ public class PageServiceImpl implements PageService {
         }
 
         Page page = pageRepository.findById(pageDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, pageDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.PAGE_NOT_FOUND, pageDto.id())
         );
 
         Module module = moduleRepository.findById(pageDto.moduleId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, pageDto.moduleId())
+            () -> new CommonOnboardingApiException(ErrorType.MODULE_NOT_FOUND, pageDto.moduleId())
         );
 
         page.setName(pageDto.name());
@@ -95,7 +95,7 @@ public class PageServiceImpl implements PageService {
     @Transactional
     public void deletePage(Long id) {
         Page page = pageRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.PAGE_NOT_FOUND, id)
         );
 
         pageRepository.delete(page);

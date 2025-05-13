@@ -38,7 +38,7 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
         log.info("вызван getKnowledgeBaseById, id = {}", id);
 
         return knowledgeBaseMapper.toDto(knowledgeBaseRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.KNOWLEDGE_BASE_NOT_FOUND, id))
         );
     }
 
@@ -58,7 +58,7 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
         log.info("вызван updateKnowledgeBase");
 
         KnowledgeBase knowledgeBase = knowledgeBaseRepository.findById(knowledgeBaseDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, knowledgeBaseDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.KNOWLEDGE_BASE_NOT_FOUND, knowledgeBaseDto.id())
         );
 
         knowledgeBase.setName(knowledgeBaseDto.name());
@@ -75,7 +75,7 @@ public class KnowledgeBaseServiceImpl implements KnowledgeBaseService {
         log.info("вызван deleteKnowledgeBase");
 
         KnowledgeBase knowledgeBase = knowledgeBaseRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.KNOWLEDGE_BASE_NOT_FOUND, id)
         );
 
         knowledgeBaseRepository.delete(knowledgeBase);

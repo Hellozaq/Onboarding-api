@@ -38,7 +38,7 @@ public class TrackServiceImpl implements TrackService {
         log.info("вызван getTrackById id = {}", id);
 
         return trackMapper.toDto(trackRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.TRACK_NOT_FOUND, id))
         );
     }
 
@@ -62,7 +62,7 @@ public class TrackServiceImpl implements TrackService {
         }
 
         Track track = trackRepository.findById(trackDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, trackDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.TRACK_NOT_FOUND, trackDto.id())
         );
 
         track.setName(trackDto.name());
@@ -77,7 +77,7 @@ public class TrackServiceImpl implements TrackService {
         log.info("вызван deleteTrack");
 
         Track track = trackRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.TRACK_NOT_FOUND, id)
         );
 
         trackRepository.delete(track);

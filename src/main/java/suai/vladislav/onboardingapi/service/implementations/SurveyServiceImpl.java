@@ -38,7 +38,7 @@ public class SurveyServiceImpl implements SurveyService {
         log.info("вызван getSurveyById id = {}", id);
 
         return surveyMapper.toDto(surveyRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, id))
         );
     }
 
@@ -62,7 +62,7 @@ public class SurveyServiceImpl implements SurveyService {
         }
 
         Survey survey = surveyRepository.findById(surveyDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, surveyDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, surveyDto.id())
         );
 
         survey.setName(surveyDto.name());
@@ -79,7 +79,7 @@ public class SurveyServiceImpl implements SurveyService {
         log.info("вызван deleteSurvey");
 
         Survey survey = surveyRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.SURVEY_NOT_FOUND, id)
         );
 
         surveyRepository.delete(survey);

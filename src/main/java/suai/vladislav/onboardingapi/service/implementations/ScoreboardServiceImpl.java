@@ -42,7 +42,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         log.info("вызван getScoreboardById id = {}", id);
 
         return scoreboardMapper.toDto(scoreboardRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id))
+            () -> new CommonOnboardingApiException(ErrorType.SCOREBOARD_NOT_FOUND, id))
         );
     }
 
@@ -52,7 +52,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         log.info("вызван addScoreboard");
 
         User user = userRepository.findById(scoreboardDto.userId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, scoreboardDto.userId())
+            () -> new CommonOnboardingApiException(ErrorType.USER_NOT_FOUND, scoreboardDto.userId())
         );
 
         Scoreboard scoreboard = scoreboardMapper.toModel(scoreboardDto);
@@ -74,11 +74,11 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         }
 
         Scoreboard scoreboard = scoreboardRepository.findById(scoreboardDto.id()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, scoreboardDto.id())
+            () -> new CommonOnboardingApiException(ErrorType.SCOREBOARD_NOT_FOUND, scoreboardDto.id())
         );
 
         User user = userRepository.findById(scoreboardDto.userId()).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, scoreboardDto.userId())
+            () -> new CommonOnboardingApiException(ErrorType.USER_NOT_FOUND, scoreboardDto.userId())
         );
 
         scoreboard.setScore(scoreboardDto.score());
@@ -95,7 +95,7 @@ public class ScoreboardServiceImpl implements ScoreboardService {
         log.info("вызван deleteScoreboard");
 
         Scoreboard scoreboard = scoreboardRepository.findById(id).orElseThrow(
-            () -> new CommonOnboardingApiException(ErrorType.NOT_FOUND, id)
+            () -> new CommonOnboardingApiException(ErrorType.SCOREBOARD_NOT_FOUND, id)
         );
 
         scoreboardRepository.delete(scoreboard);
