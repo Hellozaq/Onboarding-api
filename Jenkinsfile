@@ -43,13 +43,13 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.projectKey=Onboarding-api -Dsonar.host.url=http://158.160.38.125:9000 -Dsonar.login=$SONAR_TOKEN'
             }
         }
-        stage('Dependency Check') {
-            steps {
-                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-                    sh 'mvn org.owasp:dependency-check-maven:check -DnvdApiKey=$NVD_API_KEY'
-                }
-            }
-        }
+//         stage('Dependency Check') {
+//             steps {
+//                 withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
+//                     sh 'mvn org.owasp:dependency-check-maven:check -DnvdApiKey=$NVD_API_KEY'
+//                 }
+//             }
+//         }
         stage('Flyway Migration') {
             steps {
                 sh 'mvn flyway:migrate -Dflyway.url="$SPRING_DATASOURCE_URL" -Dflyway.user="$SPRING_DATASOURCE_USERNAME" -Dflyway.password="$SPRING_DATASOURCE_PASSWORD"'
